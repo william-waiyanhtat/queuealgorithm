@@ -1,4 +1,4 @@
-package com.celestial.myapplication;
+package com.celestial.myapplication.model;
 
 import java.util.ArrayList;
 
@@ -28,27 +28,14 @@ public class Doctor {
         return consultTime;
     }
 
-    public void setConsultTime(int consultTime) {
-        this.consultTime = consultTime;
-    }
-
-    public void consultPatient() {
-      //  timePass = timePass + consultTime;
-        isConsulting = true;
-    }
-
-
     public void consultPatient(Patient p){
         patients.add(p);
         nextAvailableTime = nextAvailableTime+consultTime;
-       // timePass = timePass + consultTime;
-      //  isConsulting = true;
     }
 
-    public int getNextAvailableTime(){
-        return nextAvailableTime;
+    public void resetNextAvailableTime(){
+        nextAvailableTime = 0;
     }
-
     public boolean isDoctorAvailable(){
         return !isConsulting;
     }

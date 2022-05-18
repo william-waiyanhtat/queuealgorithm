@@ -1,18 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/edt_doc_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:ems="10"
+            android:hint="Doctor Name"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/edt_consult_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Consult Time in minute"
+            android:inputType="number"
+            app:layout_constraintEnd_toEndOf="@+id/edt_doc_name"
+            app:layout_constraintStart_toStartOf="@+id/edt_doc_name"
+            app:layout_constraintTop_toBottomOf="@+id/edt_doc_name" />
+
+    <Button
+        android:id="@+id/btn_add_doctor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginTop="8dp"
+        android:text="Add"
+        app:layout_constraintStart_toStartOf="@+id/edt_consult_time"
+        app:layout_constraintTop_toBottomOf="@+id/edt_consult_time" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcy_doctor_list"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_add_doctor" />
+
+        <EditText
+            android:id="@+id/edt_num_of_patient"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Number of patient"
+            android:inputType="number"
+            app:layout_constraintEnd_toEndOf="@+id/rcy_doctor_list"
+            app:layout_constraintStart_toStartOf="@+id/rcy_doctor_list"
+            app:layout_constraintTop_toBottomOf="@+id/rcy_doctor_list" />
+
+        <Button
+            android:id="@+id/btn_queue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="queue"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@+id/edt_num_of_patient"
+            app:layout_constraintStart_toStartOf="@+id/edt_num_of_patient"
+            app:layout_constraintTop_toBottomOf="@+id/edt_num_of_patient" />
+
+        <EditText
+            android:id="@+id/edt_patient_number"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:hint="Enter patient number to calculate waiting time"
+            android:inputType="number"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/edt_num_of_patient"
+            app:layout_constraintStart_toStartOf="@+id/edt_num_of_patient"
+            app:layout_constraintTop_toBottomOf="@+id/btn_queue" />
+
+        <Button
+            android:id="@+id/btn_calculate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Calculate"
+            app:layout_constraintEnd_toEndOf="@+id/edt_patient_number"
+            app:layout_constraintStart_toStartOf="@+id/edt_patient_number"
+            app:layout_constraintTop_toBottomOf="@+id/edt_patient_number" />
+
+        <TextView
+            android:id="@+id/tv_waiting_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:text="Waiting time for patient : "
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/btn_calculate"
+            app:layout_constraintStart_toStartOf="@+id/btn_calculate"
+            app:layout_constraintTop_toBottomOf="@+id/btn_calculate" />
+
+        <Button
+            android:id="@+id/btn_clear_doc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="Clear Doctor"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_add_doctor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/btn_add_doctor" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

@@ -1,4 +1,4 @@
-package com.celestial.myapplication;
+package com.celestial.myapplication.model;
 
 public class Patient {
 

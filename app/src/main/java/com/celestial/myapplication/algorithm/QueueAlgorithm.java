@@ -1,4 +1,7 @@
-package com.celestial.myapplication;
+package com.celestial.myapplication.algorithm;
+
+import com.celestial.myapplication.model.Doctor;
+import com.celestial.myapplication.model.Patient;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -9,8 +12,6 @@ public class QueueAlgorithm {
     private ArrayList<Doctor> doctors;
 
     private ArrayList<Patient> patients;
-
-    private int timeTaken = 0;
 
     public ArrayList<Doctor> getDoctors() {
         return doctors;
@@ -32,23 +33,28 @@ public class QueueAlgorithm {
         this.doctors = doctors;
         this.patients = patients;
 
-        findFastestDoctor();
+        if(!doctors.isEmpty())
+            sortDoctors();
     }
 
-    public Doctor findFastestDoctor() {
+    public void sortDoctors() {
         Collections.sort(doctors, new Comparator<Doctor>() {
             @Override
             public int compare(Doctor doctor, Doctor t1) {
                 return doctor.getConsultTime() > t1.getConsultTime() ? 1 : -1;
             }
         });
-        return doctors.get(0);
+
     }
 
 
     public int getWaitingTimeOfPatientAtPosition(int ptPos) {
+        int timeTaken = 0;
         int patientPosition = 0;
         int waitingTime = 0;
+        for(Doctor d: doctors){
+            d.resetNextAvailableTime();
+        }
 
         while (patientPosition < patients.size()) {
             for (Doctor d : doctors) {
@@ -57,7 +63,7 @@ public class QueueAlgorithm {
                   //  System.out.println("Waiting Time for patient : "+patients.get(patientPosition).getName()+" is "+timeTaken+" m");
                     if(patientPosition == ptPos-1){
                         print("Waiting Time for Position : "+ptPos+" is : "+timeTaken+" m");
-                        return 0;
+                        return timeTaken;
                     }
 //                    if(ptPos == patientPosition-1){
 //                        waitingTime = timeTaken;
