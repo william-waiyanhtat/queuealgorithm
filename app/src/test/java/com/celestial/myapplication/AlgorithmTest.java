@@ -98,22 +98,23 @@ public class AlgorithmTest {
     public void totalWaitingTime(){
         Doctor a = new Doctor("A",3);
         Doctor b = new Doctor("B",4);
+        Doctor c = new Doctor("C",2);
 
         ArrayList<Doctor> doctorArrayList = new ArrayList<>();
 
         doctorArrayList.add(a);
         doctorArrayList.add(b);
+        doctorArrayList.add(c);
 
         ArrayList<Patient> patientArrayList = new ArrayList<>();
-        for(int i= 0;i<3;i++){
+        for(int i= 0;i<10;i++){
             Patient patient = new Patient("Patient "+ String.valueOf(i+1));
             patientArrayList.add(patient);
         }
 
         QueueAlgorithm queueAlgorithm = new QueueAlgorithm(doctorArrayList,patientArrayList);
 
-        queueAlgorithm.getWaitingTimeOfPatientAtPosition(3);
-
+        queueAlgorithm.getWaitingTimeOfPatientAtPosition(9);
 
         assertEquals(a.getNextAvailableTime(), 6);
 
